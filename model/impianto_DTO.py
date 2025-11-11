@@ -17,6 +17,11 @@ class Impianto:
     def get_consumi(self):
         """ Aggiorna e Restituisce la lista di consumi (self.lista_consumi) associati all'impianto"""
         # TODO
+        lista_id_impianti= ConsumoDAO.get_consumi.id_impianto
+        for i in lista_id_impianti:
+            self.lista_consumi.append(ConsumoDAO.get_consumi(1))
+        return self.lista_consumi
+
 
     def __eq__(self, other):
         return isinstance(other, Impianto) and self.id == other.id

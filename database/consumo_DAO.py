@@ -7,6 +7,7 @@ from model.consumo_DTO import Consumo
 """
 
 class ConsumoDAO:
+
     @staticmethod
     def get_consumi(id_impianto) -> list[Consumo] | None:
         """
