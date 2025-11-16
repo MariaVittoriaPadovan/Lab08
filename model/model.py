@@ -30,18 +30,18 @@ class Model:
 
         for impianto in self._impianti:
             consumi = impianto.get_consumi()
-            consumi_mese=()
+            consumi_mese=[]
 
             for consumo in consumi:
                 if consumo.data.month==mese:
-                    consumi_mese=consumo.kwh
+                    consumi_mese.append(consumo.kwh)
 
             if consumi_mese:
                 media = sum(consumi_mese) / len(consumi_mese)
             else:
                 media = 0
 
-            risultato.append((impianto.nome, media))
+            risultato.append((impianto.nome, round(media,2)))
 
         return risultato
 
@@ -101,11 +101,14 @@ class Model:
         consumi = {}
 
         for impianto in self._impianti:
-            lista = impianto.get_consumi()
+            lista_consumi = impianto.get_consumi()
+            consumi_settimana=[]
 
-            for consumi in lista:
-                if consumi.data.month==mese and 1 <= consumi.data.day <= 7:
-                    consumi[impianto.id] = consumi.kwh
+            for consumo in lista_consumi:
+                if consumo.data.month==mese and 1 <= consumo.data.day <= 7:
+                    consumi_settimana.append(consumo.kwh)
+
+            consumi[impianto.id] = consumi_settimana #assegno la lista al dizionario
 
         return consumi
 
